@@ -28,7 +28,7 @@ FROM coviddeaths
 WHERE location LIKE 'phil%'
 ORDER BY location, date;
 
-#Finding the country that has the highest infection rate
+-------#Finding the country that has the highest infection rate
 SELECT location, population,
 MAX(total_cases) AS HighestInfectionCount,
 MAX(total_cases/population) * 100 AS PercentPopulationInfected
