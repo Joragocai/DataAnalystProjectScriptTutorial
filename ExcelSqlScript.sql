@@ -4,6 +4,15 @@ USE PortfolioProject;
 SELECT * FROM covidvaccinations;
 SELECT * FROM coviddeaths;
 
+#Manually Add New Column under SELECT statement to acquire total_cases manually
+Select location, 
+date,
+total_deaths, 
+SUM(new_cases) OVER (PARTITION BY location ORDER BY date) AS Total_cases,
+(total_deaths/SUM(new_cases) OVER (PARTITION BY location ORDER BY date)) AS DeathPercentageCase
+FROM coviddeaths
+ORDER BY location, date;
+
 #Chance of death when contract with covid
 SELECT location, date, new_cases, total_cases, 
 total_deaths, population, 
